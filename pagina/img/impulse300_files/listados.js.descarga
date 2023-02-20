@@ -1,0 +1,66 @@
+function osx_form(obj,myurl) {
+    $.ajax({
+        type: 'POST',
+        url: myurl,
+        data: $("#form_search,#form_filtros").serialize(),
+        beforeSend:function(){
+            $('#listado_osx').html('<div class="loading"><img src="//media.djmania.net/web/loading.gif" alt="Cargando..." /></div>');
+
+        },
+        success:function(data){
+            $('#listado_osx').html(data);
+            $('html, body').animate({ scrollTop: "#listado_osx" }, 'slow');          
+        },
+        error:function(){
+            $('#listado_osx').html('<div class="alert alert-warning"><strong>Oops!!</strong> Hemos tenido un problema tecnico, actualize la pagina</div>');
+        }
+    });
+}
+$( document ).on( "click", "a.href_pagination", function() {
+    var obj = $(this);
+    $("a").removeClass("pagina_actual");
+    osx_form(obj,$('#listado_osx').attr('class')+'/'+obj.attr('var'));
+    $('.href_pagination').addClass('pagina_resto');
+    $(obj).removeClass('pagina_resto').addClass('pagina_actual');
+});
+$( document ).on( "click", ".filtro_ce_osx", function() {
+    var obj = $(this);
+    $('#modulos-content-box').hide();
+    osx_form(obj,$('#listado_osx').attr('class')+'/1');
+});
+$( document ).on( "click", ".filtro_osx", function() {
+    var obj = $(this);
+    osx_form(obj,$('#listado_osx').attr('class')+'/1');
+});
+$( document ).on( "click", ".filtro_price", function() {
+    var obj = $(this);
+    var sp = $(this).attr('value').split('a');
+    $('input#min_price').val(sp[0]);
+    $('input#max_price').val(sp[1]);
+    osx_form(obj,$('#listado_osx').attr('class')+'/1');
+});
+$( document ).on( "change", ".select-osx", function() {
+    var obj = $(this);
+    osx_form(obj,$('#listado_osx').attr('class')+'/1');
+});
+$( document ).on( "click", ".comparador", function() {
+    $.ajax({
+        url: '/comparar/add/'+$(this).attr('id'),
+        success:function(data){
+	    if ( data.img ) {
+		$(".list-to-compare ul").append('<li><a href="#"><img src="//media.djmania.net/images/160/'+data.img+'" class="img-responsive"></a><a href="#" class="btn btn-danger btn-xs comparision-deleted" id="'+data.ref+'"> <i class="fa fa-times-circle" aria-hidden="true"></i> Eliminar </a></li>');
+	    }
+        },
+        error:function(){
+            $('#listado_osx').html('<div class="alert alert-warning"><strong>Oops!!</strong> Hemos tenido un problema tecnico, actualize la pagina</div>');
+        }
+    });
+});
+$( document ).on( "click", ".comparision-deleted", function() {
+    var obj = $(this);
+    $.ajax({
+	url: '/comparar/del/'+$(this).attr('id'),
+    }).done(function() {
+	obj.closest('li').remove();
+    });
+});

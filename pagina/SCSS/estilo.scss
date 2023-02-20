@@ -1,0 +1,26 @@
+
+$gris:rgb(134, 134, 127);
+
+$primary: #0074d9;
+$danger: #ff4136;
+
+
+
+@import "../../bootstrap/scss/bootstrap.scss";
+
+$theme-colors: (
+  "primary": $primary,
+  "danger": $danger
+);
+
+
+
+/* .btn-outline-success{
+    color:$gris;
+    --bs-btn-color: #9d9d9d;
+    --bs-btn-border-color: #9d9d9d;
+    --bs-btn-hover-color: #ffffff;
+    --bs-btn-hover-bg: red;
+    --bs-btn-hover-border-color: #ffffff;
+}
+ */
