@@ -1,19 +1,106 @@
 
 $gris:rgb(134, 134, 127);
 
-$primary: #0074d9;
-$danger: #ff4136;
+$primary: #7a7a7a;
+
+$secondary:#fe1d1d;
 
 
+$font-family-sans-serif:
+
+  sans-serif,
+  // Emoji fonts
+  "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
+
+  $font-family-system: system-ui;
 
 @import "../../bootstrap/scss/bootstrap.scss";
 
 $theme-colors: (
   "primary": $primary,
-  "danger": $danger
+  "secondary":  $secondary,
+  "success":    $success,
+
 );
 
+h1{
+  font-family:$font-family-sans-serif;
+}
+p{
+  font-family:  $font-family-system;
+}
 
+.btn-outline-success {
+  --bs-btn-color: #7a7a7a;
+  --bs-btn-border-color: #5b5b5b;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #fe1d1d;
+  --bs-btn-hover-border-color: #198754;
+  --bs-btn-focus-shadow-rgb: 25, 135, 84;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: #fe1d1d;
+  --bs-btn-active-border-color: #acacac;
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: #5b5b5b;
+  --bs-btn-disabled-bg: transparent;
+  --bs-btn-disabled-border-color: #5b5b5b;
+  --bs-gradient: none;
+}
+
+.card-text{
+  color: #198754;
+}
+
+.container2{
+ text-align: center;
+}
+
+.d-inline-block {
+  filter:brightness(1.1);
+  mix-blend-mode: multiply;
+}
+
+/*  .navbar{
+  display:flex;
+  justify-content: space-between;    
+  position: fixed; 
+  width: 100%;
+  z-index: 40;
+  box-shadow: 0 0 10px 0 rgba(0,0,0,.5);
+  background-color:rgb(5, 5, 5) ;
+} */
+/* si pongo estas propiedades para el header el opinión como que se bugea */
+
+header{
+  width: 100%;
+  height:600px;
+  background: url(../img/Novatio.jpg);
+  background-position: center;
+  background-size: cover;
+   
+}
+
+
+@media (max-width: 990px) {
+  header{
+    background: url(../img/Novatio.jpg);
+    background-position: center;
+    background-size: cover;
+     
+  }
+}
+
+/* $theme-colors: (
+  "primary":    $primary,
+  "secondary":  $secondary,
+  "success":    $success,
+  "info":       $info,
+  "warning":    $warning,
+  "danger":     $danger,
+  "light":      $light,
+  "dark":       $dark
+);
+ */
 
 /* .btn-outline-success{
     color:$gris;
